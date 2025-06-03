@@ -1,6 +1,7 @@
-# Python
-__pycache__/
+# Pelican
+output/
 *.pyc
+__pycache__/
 .DS_Store
 
 # Virtual Environment
@@ -14,9 +15,6 @@ env/
 .idea/
 *.swp
 *.swo
-
-# Pelican output (in src directory)
-src/output/
 
 # Cache
 cache/

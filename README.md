@@ -2,6 +2,17 @@
 
 This is the official website for Filmz2, an iOS app for tracking movies and TV series. Built with [Pelican](https://getpelican.com/), a Python-based static site generator.
 
+## Project Structure
+
+```
+.
+├── src/              # Website source code
+│   ├── content/      # Markdown content files
+│   ├── theme/        # Custom theme files
+│   └── ...           # Build configuration
+└── doc/              # Project documentation
+```
+
 ## Overview
 
 The website serves as a landing page for the Filmz2 iOS app, featuring:
@@ -20,7 +31,7 @@ The website serves as a landing page for the Filmz2 iOS app, featuring:
 1. Clone this repository:
 ```bash
 git clone https://github.com/tillg/filmz2.app_src.git
-cd filmz2.app_src
+cd filmz2.app_src/src
 ```
 
 2. Create a virtual environment (recommended):
@@ -80,10 +91,11 @@ invoke preview
 make publish
 ```
 
-## Project Structure
+## Detailed Structure
 
+### Source Directory (`/src`)
 ```
-.
+src/
 ├── content/           # Markdown content files
 │   ├── pages/        # Static pages (home, features, privacy, support)
 │   ├── images/       # Images for content
@@ -97,6 +109,9 @@ make publish
 ├── tasks.py          # Invoke task definitions
 └── Makefile          # Make commands
 ```
+
+### Documentation Directory (`/doc`)
+Project documentation, feature descriptions, and development notes will be stored here.
 
 ## Configuration
 
