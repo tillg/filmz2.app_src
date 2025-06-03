@@ -1,0 +1,24 @@
+# Pelican
+output/
+*.pyc
+__pycache__/
+.DS_Store
+
+# Virtual Environment
+.venv/
+venv/
+env/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Cache
+cache/
+.cache/
+
+# Logs
+*.log

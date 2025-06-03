@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{{ SITESUBTITLE }}{% endblock %}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ SITEURL }}/favicon.ico">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style.css">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ SITEURL }}/apple-touch-icon.png">
+    
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="{{ SITEURL }}/" class="logo">
+                    <img src="{{ SITEURL }}/images/filmz.png" alt="Filmz2" class="logo-icon">
+                    <span class="logo-text">Filmz2</span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="{{ SITEURL }}/">Home</a></li>
+                    {% for title, link in MENUITEMS %}
+                    <li><a href="{{ SITEURL }}{{ link }}">{{ title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>{{ SITENAME }}</h3>
+                    <p>{{ SITESUBTITLE }}</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        {% for name, link in LINKS %}
+                        <li><a href="{{ link }}">{{ name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        {% for name, link in SOCIAL %}
+                        <li><a href="{{ link }}" target="_blank">{{ name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; {{ CURRENT_YEAR }} {{ AUTHOR }}. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

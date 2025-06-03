@@ -1,0 +1,4 @@
+pelican[markdown]>=4.9.1
+markdown>=3.5
+invoke>=2.2
+livereload>=2.6
