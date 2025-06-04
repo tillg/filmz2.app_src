@@ -1,0 +1,57 @@
+name: Deploy Website
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout source
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        cd src
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Build website
+      run: |
+        cd src
+        pelican content -s publishconf.py
+        
+    - name: Deploy to target repository
+      env:
+        DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+      run: |
+        # Configure git
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+        
+        # Clone target repository
+        git clone https://${DEPLOY_TOKEN}@github.com/tillg/filmz2.app.git target
+        
+        # Clear old content (except CNAME and .git)
+        cd target
+        find . -maxdepth 1 ! -name '.git' ! -name 'CNAME' ! -name '.' -exec rm -rf {} +
+        
+        # Copy new content
+        cp -r ../src/output/* .
+        
+        # Commit and push if there are changes
+        git add -A
+        if git diff --staged --quiet; then
+          echo "No changes to deploy"
+        else
+          git commit -m "Deploy website - $(date +'%Y-%m-%d %H:%M:%S')"
+          git push origin main
+        fi

@@ -37,13 +37,32 @@ This document describes the deployment process for the Filmz2 website, which inv
 3. Do NOT initialize with README, .gitignore, or license
 4. Leave it completely empty
 
-### 2. Configure GitHub Pages in Target Repository
+### 2. Initialize Target Repository and Configure GitHub Pages
 
-1. Go to Settings → Pages in the `filmz2.app` repository
-2. Source: Deploy from a branch
-3. Branch: `main` (or `master`)
-4. Folder: `/ (root)`
-5. Save the settings
+Since GitHub Pages requires at least one commit to enable, you need to initialize the repository first:
+
+1. Clone the empty repository locally:
+   ```bash
+   git clone git@github.com:tillg/filmz2.app.git
+   cd filmz2.app
+   ```
+
+2. Create an initial commit with a placeholder file:
+   ```bash
+   echo "# Filmz2 Website" > README.md
+   git add README.md
+   git commit -m "Initial commit"
+   git push origin main
+   ```
+
+3. Now configure GitHub Pages:
+   - Go to Settings → Pages in the `filmz2.app` repository
+   - Source: Deploy from a branch
+   - Branch: `main`
+   - Folder: `/ (root)`
+   - Save the settings
+
+Note: The README.md will be replaced automatically during the first deployment.
 
 ### 3. Set Up Custom Domain
 
